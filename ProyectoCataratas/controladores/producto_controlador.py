@@ -1,15 +1,11 @@
 from flask import  jsonify,request  #,Flask# del modulo flask importar la clase Flask y los métodos jsonify,request
-
-
 from app import app, db,ma
-
-
 from modelos.producto_modelo import *
 
 
 class ProductoSchema(ma.Schema):
     class Meta:
-        fields=('id','nombre','precio','stock','tipoproducto','imagen')
+        fields=('id','nombre','precio','duracion','descripcion','imagen')
 
 
 producto_schema=ProductoSchema()            # El objeto producto_schema es para traer un producto
@@ -44,10 +40,10 @@ def create_producto():
     #print(request.json)  # request.json contiene el json que envio el cliente
     nombre=request.json['nombre']
     precio=request.json['precio']
-    stock=request.json['stock']
-    tipoproducto=request.json['tipoproducto']
+    duracion=request.json['duracion']
+    descripcion=request.json['descripcion']
     imagen=request.json['imagen']
-    new_producto=Producto(nombre,precio,stock,tipoproducto,imagen)
+    new_producto=Producto(nombre,precio,duracion,descripcion,imagen)
     db.session.add(new_producto)
     db.session.commit()
     return producto_schema.jsonify(new_producto)
@@ -59,8 +55,8 @@ def update_producto(id):
  
     producto.nombre=request.json['nombre']
     producto.precio=request.json['precio']
-    producto.stock=request.json['stock']
-    producto.tipoproducto=request.json['tipoproducto']
+    producto.duracion=request.json['duracion']
+    producto.descripcion=request.json['descripcion']
     producto.imagen=request.json['imagen']
 
 
