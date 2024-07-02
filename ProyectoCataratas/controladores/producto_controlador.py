@@ -5,7 +5,7 @@ from modelos.producto_modelo import *
 
 class ProductoSchema(ma.Schema):
     class Meta:
-        fields=('id','nombre','precio','duracion','descripcion','imagen')
+        fields=('id','titulo','precio','duracion','descripcion','imagen')
 
 
 producto_schema=ProductoSchema()            # El objeto producto_schema es para traer un producto
@@ -38,12 +38,12 @@ def delete_producto(id):
 @app.route('/productos', methods=['POST']) # crea ruta o endpoint
 def create_producto():
     #print(request.json)  # request.json contiene el json que envio el cliente
-    nombre=request.json['nombre']
+    titulo=request.json['titulo']
     precio=request.json['precio']
     duracion=request.json['duracion']
     descripcion=request.json['descripcion']
     imagen=request.json['imagen']
-    new_producto=Producto(nombre,precio,duracion,descripcion,imagen)
+    new_producto=Producto(titulo,precio,duracion,descripcion,imagen)
     db.session.add(new_producto)
     db.session.commit()
     return producto_schema.jsonify(new_producto)
@@ -53,7 +53,7 @@ def create_producto():
 def update_producto(id):
     producto=Producto.query.get(id)
  
-    producto.nombre=request.json['nombre']
+    producto.titulo=request.json['titulo']
     producto.precio=request.json['precio']
     producto.duracion=request.json['duracion']
     producto.descripcion=request.json['descripcion']
