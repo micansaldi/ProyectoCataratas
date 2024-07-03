@@ -19,11 +19,7 @@ db= SQLAlchemy(app)   #crea el objeto db de la clase SQLAlquemy
 ma=Marshmallow(app)   #crea el objeto ma de de la clase Marshmallow
 
 
-from controladores.producto_controlador import *
-
-
-#from controladores.usuario_controlador import *
-#from controladores.tipoProducto_controlador import *
+from controladores.excursion_controlador import *
 
 
 # programa principal *******************************

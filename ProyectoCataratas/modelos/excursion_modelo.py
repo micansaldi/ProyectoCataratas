@@ -4,7 +4,7 @@ from app import app, db   #,ma
 
 
 # defino las tablas
-class Producto(db.Model):   # la clase Producto hereda de db.Model    
+class Excursion(db.Model):   # la clase Producto hereda de db.Model    
     id=db.Column(db.Integer, primary_key=True)   #define los campos de la tabla
     titulo=db.Column(db.String(100))
     precio=db.Column(db.Float)
